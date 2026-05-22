@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MASN3 ELFORMA Dashboard
 
-## Getting Started
+A mobile-first gym performance dashboard built with Next.js 14 + TypeScript + Tailwind CSS + Framer Motion.
 
-First, run the development server:
+## Tech Stack
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion** — page transitions, staggered reveals, spring animations
+- **Recharts** — body composition area charts
+- **next/font** — Barlow + Barlow Condensed (Google Fonts, self-hosted)
+
+## Setup
 
 ```bash
+# Install dependencies
+npm install framer-motion recharts
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Files Added / Modified
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/
+├── page.tsx                    ← Main entry, AnimatePresence login/dashboard toggle
+├── layout.tsx                  ← Barlow fonts, dark bg
+├── globals.css                 ← Tailwind + scrollbar-none utility
+├── data/
+│   ├── user.ts                 ← User interface + getUserById() lookup
+│   └── inbody.ts               ← 12 InBody measurement records
+├── hooks/
+│   ├── useSound.ts             ← Web Audio API beeps (success chime, error, click)
+│   └── useCounter.ts           ← Animated number counting hook
+└── components/
+    ├── AnimatedNumber.tsx      ← Wraps useCounter for display
+    ├── LoginScreen.tsx         ← Login with shake animation + sound
+    ├── Dashboard.tsx           ← Full dashboard layout, mobile-first
+    ├── StatCard.tsx            ← Reusable metric card
+    ├── ProgressBar.tsx         ← Animated progress bar with delta tag
+    ├── InBodyChart.tsx         ← Recharts area chart, 4 switchable metrics
+    └── InBodyHistory.tsx       ← Full scan history table with deltas
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Member IDs (demo)
 
-## Learn More
+| ID    | Name          | Goal        |
+|-------|---------------|-------------|
+| 18020 | Ahmed Hassan  | Muscle Gain |
+| 24301 | Sara Khaled   | Fat Loss    |
 
-To learn more about Next.js, take a look at the following resources:
+## UX Details
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Mobile-first**: single-column layout up to sm (640px), max-w-2xl centered on desktop
+- **Page transitions**: AnimatePresence with fade+slide between login and dashboard
+- **Staggered reveals**: `staggerChildren` on dashboard mount (0.07s delay between sections)
+- **Counter animations**: numbers count up from 0 on dashboard entry using rAF
+- **Progress bars**: width animates in with spring easing
+- **Chart switching**: AnimatePresence fade between chart datasets
+- **Sound effects**: Web Audio API — success chime on login, error buzz on wrong ID, subtle click on interactions (toggle with 🔊/🔇 button)
+- **Delta indicators**: History table shows color-coded +/- changes per measurement
