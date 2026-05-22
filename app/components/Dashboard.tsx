@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { User } from "../data/user";
 import { inbodyData } from "../data/inbody";
 import StatCard from "./StatCard";
@@ -41,7 +41,7 @@ const container = {
   show: { transition: { staggerChildren: 0.07 } },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
