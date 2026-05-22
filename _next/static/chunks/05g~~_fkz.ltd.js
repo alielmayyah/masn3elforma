@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,98815,o=>{o.q("/masn3elforma/_next/static/media/logo.17ycombu~hnud.jpg")}]);
