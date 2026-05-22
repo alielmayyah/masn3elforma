@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { User } from "../data/user";
 import { inbodyData } from "../data/inbody";
 import StatCard from "./StatCard";
@@ -46,7 +46,7 @@ const item: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 

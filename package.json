@@ -6,8 +6,8 @@
 "scripts": {
   "dev": "next dev",
   "build": "next build",
-  "export": "next export",
-  "deploy": "npm run build && npm run export && gh-pages -d out"
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d out"
 },
   "dependencies": {
     "framer-motion": "^12.40.0",
